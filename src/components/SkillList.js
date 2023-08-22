@@ -3,7 +3,7 @@ import SkillListItem from "./SkillListItem";
 function SkillList({ skills }) {
   return (
     // all components must return a single set of tags
-    <ul>
+    <ul className="padding-0">
         {skills.map((skill, index) => (
             <SkillListItem key={index} skill={skill}/>
         ))}

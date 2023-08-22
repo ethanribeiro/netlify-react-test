@@ -1,4 +1,6 @@
 import './App.css';
+import '../SkillListItem.css'
+import '../NewSkillForm.css'
 import SkillList from '../SkillList';
 import NewSkillForm from '../NewSkillForm';
 import React, { useState } from 'react';
@@ -18,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>React Dev Skills</h1>
+      <h1 className='teal-text'>React Dev Skills</h1>
       <SkillList skills={skills}/>
       <hr />
       <NewSkillForm onAddSkill={addSkill}/>

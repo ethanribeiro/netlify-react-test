@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./NewSkillForm.css";
 
 function NewSkillForm({ onAddSkill }) {
     const [skill, setSkill] = useState("");
@@ -22,25 +23,22 @@ function NewSkillForm({ onAddSkill }) {
 
     return (
         // all components must return a single set of tags
-        <form onSubmit={handleSubmit}>
-            <label> Skill
-                <input type="text" name="skill" value={skill} onChange={handleSkillChange} required />
-            </label>
-
-            <label> Level
-                <select value={level} onChange={handleLevelChange} required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </label>
+        <form className="NewSkillForm" onSubmit={handleSubmit}>
+            <label>Skill</label>
+            <input type="text" name="skill" value={skill} onChange={handleSkillChange} required />
+        
+            <label>Level</label>
+            <select value={level} onChange={handleLevelChange} required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
         
             <button type="submit">ADD SKILL</button>
       </form>
     );
-
 }
 
 export default NewSkillForm;
