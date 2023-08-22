@@ -1,39 +1,41 @@
 import React, { useState } from "react";
-import "./NewSkillForm.css";
 
 function NewSkillForm({ onAddSkill }) {
-    const [skill, setSkill] = useState("");
-    const [level, setLevel] = useState("1");
+    const [formData, setFormData] = useState({
+        skill: "",
+        level: "1",
+    });
 
-    const handleSkillChange = (event) => {
-        setSkill(event.target.value);
-    };
-
-    const handleLevelChange = (event) => {
-        setLevel(event.target.value);
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const newSkill = { name: skill, level: parseInt(level) };
+        const newSkill = { name: formData.skill, level: parseInt(formData.level) };
         onAddSkill(newSkill);
-        setSkill("");
-        setLevel("1");
+        setFormData({
+            skill: "",
+            level: "1",
+        });
     };
 
     return (
-        // all components must return a single set of tags
         <form className="NewSkillForm" onSubmit={handleSubmit}>
             <label>Skill</label>
-            <input type="text" name="skill" value={skill} onChange={handleSkillChange} required />
+            <input type="text" name="skill" value={formData.skill} onChange={handleInputChange} required />
         
             <label>Level</label>
-            <select value={level} onChange={handleLevelChange} required>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+            <select name="level" value={formData.level} onChange={handleInputChange} required>
+                {[1, 2, 3, 4, 5].map((level) => (
+                    <option key={level} value={level}>
+                        {level}
+                    </option>
+                ))}
             </select>
         
             <button type="submit">ADD SKILL</button>
